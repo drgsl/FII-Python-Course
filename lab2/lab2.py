@@ -4,8 +4,6 @@ of the first n numbers in the Fibonacci string.
 """
 
 from json.encoder import INFINITY
-from msilib.schema import IniFile
-import string
 
 
 def pb1():
@@ -201,6 +199,29 @@ def isPalindrome(input):
    ["e" . Note: The function must return list of lists.
 """
 
+def pb8():
+    x = 2
+    inStrings = ["test", "hello", "lab002"]
+    flag = False
+
+    print(asciiDivisibleBy(x, inStrings, flag))
+
+
+def asciiDivisibleBy(x = 1, inStrings = [], flag = True):
+    outerList = []
+    for string in inStrings:
+        innerList = []
+        for char in string:
+            if(flag):
+                if(ord(char) % x == 0):
+                    innerList.append(char)
+                    # innerList.append(ord(char))
+            else:
+                if(ord(char) % x != 0):
+                    innerList.append(char)
+                    # innerList.append(ord(char))
+        outerList.append(innerList)
+    return outerList
 
 """
 9. Write a function that receives as paramer 
@@ -212,6 +233,26 @@ standing in front of him. All the seats are occupied. All the seats are at the s
  Row and column indexing starts from 0, beginning with the closest row from the field.
 """
 
+def pb9():
+    heights = [[1, 2, 3, 2, 1, 1],
+               [2, 4, 4, 3, 7, 2],
+               [5, 5, 2, 5, 6, 4],
+               [6, 6, 7, 6, 7, 5]]
+    
+    print(getShortPPL(heights))
+
+def getShortPPL(matrix):
+    solution = []
+    for j in range(len(matrix[0])):
+        max = -INFINITY
+        for i in range(len(matrix)):
+            if(matrix[i][j] > max):
+                max = matrix[i][j]
+            else:
+                solution.append(tuple([i, j]))
+                # print(matrix[i][j], " ", i, " ", j)
+
+    return solution
 """
 10. Write a function that receives a variable number of lists 
 and returns a list of tuples as follows: the first tuple contains 
@@ -224,6 +265,14 @@ Note: If input lists do not have the same number of items,
 missing items will be replaced with None to be able to generate 
 max ([len(x) for x in input_lists]) tuples.
 """
+
+def pb10():
+    lst1 = [1,2,3, 8]
+    lst2 = [5,6,7]
+    lst3 = ['a', 'b', 'c']
+
+    result = zip(lst1, lst2, lst3)
+    print(list(result))
 
 """
 11. Write a function that will order a list of string 
@@ -251,7 +300,7 @@ if __name__ == '__main__':
     # pb4()
     # pb5()
     # pb6()
-    pb7()
+    # pb7()
     # pb8()
     # pb9()
-    # pb10()
+    pb10()

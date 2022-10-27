@@ -4,6 +4,21 @@ a and b and returns a list of sets containing:
 (a intersected with b, a reunited with b, a - b, b - a)
 """
 
+def pb1():
+  a = [15, 9, 10, 56, 23, 78, 5, 4, 9]
+  b = [9, 4, 5, 36, 47, 26, 10, 45, 87]
+
+  print(getSetOperations(a,b))
+
+def getSetOperations(a, b):
+  a = set(a)
+  b = set(b)
+  a_union_b = a.union(b)
+  a_intersection_b = a.intersection(b)
+  a_minus_b = a.difference(b)
+  b_minus_a = b.difference(a)
+  return (a_union_b, a_intersection_b, a_minus_b, b_minus_a)
+
 
 """
 2. Write a function that receives a string
@@ -18,6 +33,16 @@ a and b and returns a list of sets containing:
 'h': 1, 'l': 1, 'p': 2, 
 ' ': 2, 'A': 1, 'n': 1} 
 """
+from collections import defaultdict
+
+def pb2():
+  print(getFreqDict("Ana has apples"))
+
+def getFreqDict(string):
+  dictionary = defaultdict(int)
+  for character in string:
+      dictionary[character] += 1
+  return dict(dictionary)
 
 
 """
@@ -28,6 +53,27 @@ because they can contain other containers,
 such as dictionaries, lists, sets, etc.)
 """
 
+def pb3():
+  a = {"A" : 11, "B" : 28, "C" : {"D" : 11, "E" : 12}}
+  b = {"A" : 11,  "B" : 28, "C" : {"D" : 11, "E" : 12}}
+
+  print (compareDict(a, b))
+
+def compareDict (A, B) :
+  if ((type(A) is dict and type(B) is dict) == False) :
+      return False
+
+  if len(A) != len(B):
+      return False
+  
+  is_equal = True
+  for key in A :
+      if key in B :
+          is_equal = is_equal and compareDict(A[key], B[key])
+      else :
+          return False
+
+  return is_equal
 
 """
 4. The build_xml_element function receives
@@ -43,6 +89,19 @@ such as dictionaries, lists, sets, etc.)
   "<a href=\"http://python.org \ "_class = \" my-link 
   \ "id = \" someid \ "> Hello there </a>"
 """
+
+def pb4():
+  print(build_xml_element ("a", "Hello there",
+href =" http://python.org ",
+_class =" my-link ", 
+id= " someid "))
+
+def build_xml_element(tag, content, **pairs):
+    string = f'<{tag} '
+    for key, value in pairs.items():
+        string += f'{key}=\\\"{value}\\\"'
+    string += f'>{content} </{tag}>'
+    return string
 
 
 """
@@ -67,6 +126,9 @@ and d= {"key1": "come inside, it's too cold out",
   for "key1" and "key2" "key3" that does not appear in the rules.
 """
 
+def pb5():
+  print(end = '')
+
 
 """
 6. Write a function that receives as a parameter 
@@ -76,6 +138,8 @@ and b representing the number of duplicate elements in the list
 (use sets to achieve this objective).
 """
 
+def pb6():
+  print(end = '')
 
 """
 7. Write a function that receives a variable number of sets 
@@ -101,6 +165,9 @@ Ex: {1,2}, {2, 3} =>
 }
 """
 
+def pb7():
+  print(end = '')
+
 
 """
 8. Write a function that receives a single dict parameter 
@@ -120,6 +187,8 @@ Ex: loop({'start': 'a', 'b': 'a', 'a': '6',
  will return ['a', '6', 'z', '2']
 """
 
+def pb8():
+  print(end = '')
 
 """
 9. Write a function that receives a variable number 
@@ -130,3 +199,48 @@ whose values can be found among keyword arguments values.
 Ex: my_function(1, 2, 3, 4, x=1, y=2, z=3, w=5) 
 will return returna 3
 """
+
+def pb9():
+  print(end = '')
+
+
+if __name__ == '__main__':
+
+  print()
+  print()
+
+  print(" ------ ------ Problem 1 ------ -----")
+  pb1()
+  print()
+
+  print(" ------ ------ Problem 2 ------ -----")
+  pb2()
+  print()
+
+  print(" ------ ------ Problem 3 ------ -----")
+  pb3()
+  print()
+
+  print(" ------ ------ Problem 4 ------ -----")
+  pb4()
+  print()
+
+  print(" ------ ------ Problem 5 ------ -----")
+  pb5()
+  print()
+
+  print(" ------ ------ Problem 6 ------ -----")
+  pb6()
+  print()
+
+  print(" ------ ------ Problem 7 ------ -----")
+  pb7()
+  print()
+
+  print(" ------ ------ Problem 8 ------ -----")
+  pb8()
+  print()
+
+  print(" ------ ------ Problem 9 ------ -----")
+  pb9()
+  print()

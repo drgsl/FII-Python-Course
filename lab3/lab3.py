@@ -139,7 +139,12 @@ and b representing the number of duplicate elements in the list
 """
 
 def pb6():
-  print(end = '')
+  A = [10, 10, 2, 2, 13, 17, 99, 2]
+  print(unique_duplicate(A))
+
+def unique_duplicate (list) :
+    set_from_list = set(list)
+    return (len(set_from_list), len(list) - len(set_from_list))
 
 """
 7. Write a function that receives a variable number of sets 
@@ -166,8 +171,21 @@ Ex: {1,2}, {2, 3} =>
 """
 
 def pb7():
-  print(end = '')
+  print( operations_over_sets({1,2}, {2, 3}) )
 
+def operations_over_sets (*sets) :
+
+    resaults_set = {}
+
+    for setA in sets :
+        for setB in sets :
+            if (setA != setB) :
+                resaults_set[(repr(setA) + ' | ' + repr(setB))] = setA.intersection(setB)
+                resaults_set[(repr(setA) + ' & ' + repr(setB))] = setA.union(setB)
+                resaults_set[(repr(setA) + ' - ' + repr(setB))] = setA.difference(setB)
+                resaults_set[(repr(setB) + ' - ' + repr(setA))] = setB.difference(setA)
+
+    return resaults_set
 
 """
 8. Write a function that receives a single dict parameter 
@@ -188,7 +206,17 @@ Ex: loop({'start': 'a', 'b': 'a', 'a': '6',
 """
 
 def pb8():
-  print(end = '')
+  print( loop({'start': 'a', 'b': 'a', 'a': '6', '6': 'z', 'x': '2', 'z': '2', '2': '2', 'y': 'start'}) )
+
+def loop (dictionary) :
+    resault = []
+    key = dictionary["start"]
+    
+    while resault.count(key) == 0 :
+        resault.append(key)
+        key = dictionary[key]
+
+    return resault
 
 """
 9. Write a function that receives a variable number 
@@ -201,8 +229,15 @@ will return returna 3
 """
 
 def pb9():
-  print(end = '')
+  print( my_function(1, 2, 3, 4, x=1, y=2, z=3, w=5) )
 
+def my_function(*positionals, **keys) :
+    nr = 0
+    
+    for key in keys :
+        if (positionals.count(keys[key]) != 0) : nr = nr + 1
+
+    return nr 
 
 if __name__ == '__main__':
 

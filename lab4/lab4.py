@@ -15,7 +15,7 @@ Mențiune: extensia fișierului ‘fisier.txt’ este ‘txt’
 """
 
 def pb1():
-    print(extensii("C:/"))
+    print(extensii("/home/dragosel/fii/year3/py/lab4/"))
 
 def extensii (director) :
     extensii_list = set([])
@@ -40,7 +40,7 @@ calea absolută a fiecărui fișier din interiorul
 directorului de la calea folder, ce incepe cu litera A. 
 """
 def pb2():
-    print(director_records("D:\work\\bd\Learning\Python\Lab 4", "D:\work\\bd\Learning\Python\Lab 4\_2_records.txt"))
+    print(director_records("/home/dragosel/fii/year3/py/lab4", "/home/dragosel/fii/year3/py/lab4/pb2_absolutePathOfFoldersFromGivenDir"))
 
 def director_records(director, fisier) :
     files_in_dir = os.listdir(director)
@@ -51,9 +51,9 @@ def director_records(director, fisier) :
         if os.path.isfile(cale) == True :
             files_record.write(cale)
             files_record.write("\n")
-
+    print("Written in ", fisier )
     return
-            
+
 
 """
 3) Să se scrie o funcție ce primește 
@@ -73,7 +73,9 @@ din directorul dat ca parametru.
 """
 
 def pb3():
-    print ( fisier_file("D:\work\\bd\Learning\Python\Lab 4") )
+    print ( fisier_file("/home/dragosel/fii/year3/py/lab4/lab4.py") )
+    print()
+    print ( fisier_file("/home/dragosel/fii/year3/py/") )
 
 def fisier_file(my_path) :
     if os.path.isfile (my_path) :
@@ -115,9 +117,12 @@ deci nu va apărea în lista finală.
 
 def pb4():
 
+    print(getExtensionsRecursively("/home/dragosel/fii/year3/py/lab4"))
+
+def getExtensionsRecursively(initialDir):
     dictionar_extensii = dict([])
 
-    for file in os.listdir( sys.argv[1] ) :
+    for file in os.listdir(initialDir) :
         
         if os.path.isfile(file) :
             for poz in range( len(file) - 1, 0, -1) :
@@ -129,7 +134,7 @@ def pb4():
                     else :
                         dictionar_extensii[file[poz:]]  += 1
                     break
-    print(dictionar_extensii)
+    return dictionar_extensii
 
 
 
@@ -148,29 +153,7 @@ un mesaj corespunzator.
 """
 
 def pb5():
-    print (search_in_target("D:\work\\bd\Learning\Python\Lab 4", "def"))
-
-def search_in_target (target, to_search) :
-
-    files_containing = []
-    
-    if os.path.isfile(target) :
-
-        data = open(target).read()
-        if (data.count(to_search) != 0) : files_containing.append(target)
-
-    elif os.path.isdir(target) :
-        
-        for (root, director, fisiere) in os.walk(target) :
-            for fisier in fisiere :
-                if os.path.isfile(os.path.join(root, fisier)) :
-                    
-                    data = open(os.path.join(root, fisier)).read()
-                    if (data.count(to_search) != 0) : files_containing.append(os.path.join(root, fisier))
-    else :
-        raise ValueError(target)
-
-    return files_containing
+    print("Not implemented")
 
 """
 6)	Să se scrie o funcție care are același 
@@ -184,36 +167,7 @@ instanța excepției ca parametru.
 """
 
 def pb6():
-    print (search_in_target("D:\work\\bd\Learning\Python\Lab 4", "def", handle_exception) )
-
-def search_in_target (target, to_search, callback) :
-
-    files_containing = []
-    
-    if os.path.isfile(target) :
-
-        data = open(target).read()
-        if (data.count(to_search) != 0) : files_containing.append(target)
-
-    elif os.path.isdir(target) :
-        
-        for (root, director, fisiere) in os.walk(target) :
-            for fisier in fisiere :
-                if os.path.isfile(os.path.join(root, fisier)) :
-                    
-                    data = open(os.path.join(root, fisier)).read()
-                    if (data.count(to_search) != 0) : files_containing.append(os.path.join(root, fisier))
-    else :
-        callback( ValueError(target) )
-
-    return files_containing
-
-
-def handle_exception(err) :
-    try :
-        raise err
-    except ValueError as e :
-        print (e)
+    print("Not implemented")
 
 """
 7)	Să se scrie o funcție care primește ca parametru 
@@ -228,7 +182,7 @@ din/scrie in fisier.
 """
 
 def pb7():
-    print(file_caracteristics("D:\work\\bd\Learning\Python\Lab 4\_2_records.txt"))
+    print(file_caracteristics("/home/dragosel/fii/year3/py/lab4/lab4.py"))
 
 def file_caracteristics (file_path) :
     caracteristics_dict = dict([])
@@ -269,7 +223,7 @@ C:\\director\\director2 <- director
 """
 
 def pb8():
-    print ( absolute_paths("D:\work\\bd\Learning\Python\Lab 4") )
+    print ( absolute_paths("/home/dragosel/fii/year3/py/lab4/") )
 
 def absolute_paths (root_path) :
 
